@@ -1,0 +1,5 @@
+node_modules/*
+elm-stuff/*
+src/bundle.js
+static/js/app.min.js
+server.comp.js
