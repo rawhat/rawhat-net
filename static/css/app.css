@@ -74,6 +74,10 @@ body {
 
 .project-entry:hover {
 	background-color: lightgray;
+	-webkit-transition: background-color 500ms ease-out 1s;
+    -moz-transition: background-color 500ms ease-out 1s;
+    -o-transition: background-color 500ms ease-out 1s;
+    transition: background-color 500ms ease-out 1s;
 }
 
 hr {
@@ -87,9 +91,12 @@ a {
 }
 
 a:hover {
-	color: rgba(255, 255, 255, .75);
 	text-decoration: none;
 	color: black;
+	-webkit-transition: color 500ms ease-out 1s;
+    -moz-transition: color 500ms ease-out 1s;
+    -o-transition: color 500ms ease-out 1s;
+    transition: color 500ms ease-out 1s;
 }
 
 h1{
