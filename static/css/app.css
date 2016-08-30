@@ -70,14 +70,19 @@ body {
 	display: inline-block;
 	margin: 10px auto;
 	padding: 10px;
+	background-color: transparent;
+	-webkit-transition: background-color 250ms linear 0s;
+	-moz-transition: background-color 250ms linear 0s;
+	-o-transition: background-color 250ms linear 0s;
+	transition: background-color 250ms linear 0s;
 }
 
 .project-entry:hover {
 	background-color: lightgray;
-	-webkit-transition: background-color 0s ease-out 500ms;
-    -moz-transition: background-color 0s ease-out 500ms;
-    -o-transition: background-color 0s ease-out 500ms;
-    transition: background-color 0s ease-out 500ms;
+	-webkit-transition: background-color 250ms linear 0s;
+	-moz-transition: background-color 250ms linear 0s;
+	-o-transition: background-color 250ms linear 0s;
+	transition: background-color 250ms linear 0s;
 }
 
 hr {
