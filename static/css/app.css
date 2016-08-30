@@ -98,10 +98,6 @@ a {
 a:hover {
 	text-decoration: none;
 	color: black;
-	-webkit-transition: color 500ms ease-out 1s;
-    -moz-transition: color 500ms ease-out 1s;
-    -o-transition: color 500ms ease-out 1s;
-    transition: color 500ms ease-out 1s;
 }
 
 h1{
