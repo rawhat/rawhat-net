@@ -3,7 +3,6 @@ module Main exposing (..)
 import Html exposing (..)
 import Html exposing (text, h2, a, h3, h1, i, hr)
 import Html.Attributes exposing (class, href, target)
-import Html.App as App exposing (beginnerProgram)
 import Html.Events exposing (..)
 
 
@@ -159,9 +158,9 @@ view model =
         ]
 
 
-main : Program Never
+main : Program Never Model Action
 main =
-    App.beginnerProgram
+    Html.beginnerProgram
         { model = initialModel
         , view = view
         , update = update
