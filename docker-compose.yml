@@ -1,0 +1,18 @@
+version: '2'
+services:
+  db:
+    image: "neo4j:3.0"
+    ports:
+      - "7474:7474"
+  platformer:
+    build: ../the-platformer
+    ports:
+      - "8002:8002"
+    volumes:
+      - "../the-platformer:/usr/src/app"
+  enjoychess:
+    build: ../enjoychess
+    ports:
+      - "8001:8001"
+    volumes:
+      - "../enjoychess:/usr/src/app"

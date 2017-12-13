@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/rawhat/rawhat-net#readme",
   "devDependencies": {
-    "babel-plugin-transform-async-to-generator": "^6.8.0"
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "elm-webpack-loader": "^3.1.0"
   },
   "dependencies": {
-    "elm-webpack-loader": "^3.0.6",
+    "elm": "^0.18.0",
     "koa": "^2.0.0-alpha.6",
     "koa-compress": "^2.0.0",
     "koa-convert": "^1.2.0",
