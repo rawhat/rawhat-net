@@ -4,6 +4,8 @@ services:
     image: "neo4j:3.0"
     ports:
       - "7474:7474"
+    environment:
+      - NEO4J_AUTH=neo4j/Password12
   platformer:
     build: ../the-platformer
     ports:
@@ -20,8 +22,6 @@ services:
     environment:
       - MIX_ENV=dev
       - PORT=4000
-    volumes:
-      - "../playlistr:/app"
     depends_on:
       - db
   enjoychess:
@@ -30,3 +30,13 @@ services:
       - "8001:8001"
     volumes:
       - "../enjoychess:/usr/src/app"
+  rawhat_net:
+    build: .
+    ports:
+      - "3000:3000"
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx-Dockerfile
+    ports:
+      - "80:80"
