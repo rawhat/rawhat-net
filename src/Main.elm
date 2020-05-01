@@ -56,6 +56,10 @@ update action model =
                                 Just proj
             }
 
+spades : Project
+spades =
+    Project "Spades" "Anger your friends and defeat your opponents in this cooperative yet competitive card game." "http://spades.rawhat.net" ""
+
 
 platformer : Project
 platformer =
@@ -103,7 +107,8 @@ displayProject proj =
 
 links : List ( Action, String )
 links =
-    [ ( SelectProject platformer, "The Platformer" )
+    [ ( SelectProject spades, "Spades" )
+    , ( SelectProject platformer, "The Platformer" )
     , ( SelectProject chess, "EnjoyChess" )
     , ( SelectProject rating, "Oratio Webrating" )
     , ( SelectProject oratio, "Oratio" )
