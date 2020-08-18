@@ -3,9 +3,9 @@ html lang="en"
 	head
 		link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
-		link rel="stylesheet" href="/css/app.css"
+		link rel="stylesheet" href="/static/css/app.css"
 
 		title home  ::  rawhat
 	body
 		#main-app
-		script src="/js/app.min.js" type="application/javascript"
+		script src="/static/js/app.min.js" type="application/javascript"
