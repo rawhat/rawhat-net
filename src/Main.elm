@@ -1,16 +1,16 @@
 module Main exposing (..)
 
+import Browser
 import Html exposing (..)
-import Html exposing (text, h2, a, h3, h1, i, hr)
 import Html.Attributes exposing (class, href, target)
 import Html.Events exposing (..)
+
 
 
 -- model
 
 
 type alias Model =
-    --{ selectedProject : Maybe String }
     { selectedProject : Maybe Project }
 
 
@@ -35,10 +35,6 @@ type Action
     = SelectProject Project
 
 
-
---update : Action -> Model -> Model
-
-
 update : Action -> Model -> Model
 update action model =
     case action of
@@ -52,9 +48,11 @@ update action model =
                         Just p ->
                             if p.name == proj.name then
                                 Nothing
+
                             else
                                 Just proj
             }
+
 
 spades : Project
 spades =
@@ -83,10 +81,6 @@ oratio =
 
 
 -- view
--- href "http://platformer.rawhat.net"
--- href "http://chess.rawhat.net"
--- href "http://github.com/rawhat/oratio-rating"
--- href "http://tryoratio.com"
 
 
 displayProject : Maybe Project -> Html Action
@@ -131,10 +125,11 @@ buildLinks model =
                         Just p ->
                             if p.name == tx then
                                 classes ++ " active"
+
                             else
                                 classes
             in
-                div [ class classNames, onClick ev ] [ text tx ]
+            div [ class classNames, onClick ev ] [ text tx ]
         )
         links
 
@@ -163,10 +158,10 @@ view model =
         ]
 
 
-main : Program Never Model Action
+main : Program () Model Action
 main =
-    Html.beginnerProgram
-        { model = initialModel
+    Browser.sandbox
+        { init = initialModel
         , view = view
         , update = update
         }
