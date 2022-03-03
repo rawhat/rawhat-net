@@ -1,0 +1,12 @@
+body {
+  background-color: darkgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+body > h1 {
+  font-family: monospace;
+}

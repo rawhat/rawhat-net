@@ -1,4 +1,0 @@
-INFO: Found elm at /home/alex/.asdf/shims/elm
-INFO: Found elm 0.19.1
-ERROR: elm-format was not found on your PATH.  Make sure you have elm-format installed.
-You can download Elm format here https://github.com/avh4/elm-format#installation-
