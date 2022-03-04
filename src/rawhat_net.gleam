@@ -20,7 +20,7 @@ pub external fn file_extension(file: String) -> String =
   "filename" "extension"
 
 pub type AppError {
-  NotFound(path: String)
+  NotFound
 }
 
 pub type AppRequest(services) {
@@ -90,8 +90,14 @@ fn join_path(path: List(String)) -> String {
   string.join(path, "/")
 }
 
-fn not_found(path: List(String)) -> AppResult {
-  Error(NotFound(path: string.join(path, "/")))
+fn not_found() -> AppResult {
+  Error(NotFound)
+}
+
+fn empty_response(status: Int) -> Response(BitBuilder) {
+  status
+  |> response.new
+  |> response.set_body(bit_builder.new())
 }
 
 fn body_of_type(body: BitString, content_type: String) -> AppResult {
@@ -114,8 +120,8 @@ fn ext_to_content_type(ext: String) -> String {
   case ext {
     "" -> "application/x-binary"
     ".gleam" -> "application/gleam"
-    ".js" -> "application/javascript"
-    ".css" -> "application/stylesheet"
+    ".js" -> "text/javascript"
+    ".css" -> "text/css"
     ".html" -> "text/html"
     _ -> "text/plain"
   }
@@ -125,7 +131,7 @@ pub fn serve_file(path: List(String), root: String) -> AppResult {
   try _ =
     path
     |> validate_path
-    |> result.replace_error(NotFound(join_path(path)))
+    |> result.replace_error(NotFound)
 
   let joined = case path {
     [] | ["/"] -> join_path([root, "index.html"])
@@ -135,7 +141,7 @@ pub fn serve_file(path: List(String), root: String) -> AppResult {
   try contents =
     joined
     |> file.read_bits
-    |> result.replace_error(NotFound(joined))
+    |> result.replace_error(NotFound)
 
   let last = case list.last(path) {
     Error(_) -> "index.html"
@@ -150,10 +156,10 @@ pub fn serve_file(path: List(String), root: String) -> AppResult {
 
 pub fn router(request: AppRequest(services)) -> AppResult {
   log_request(request)
-  case #(request.method, request.path) {
-    #(Get, ["/"]) -> ok_with(bit_builder.from_string("Hello, world!"))
-    #(Get, path) -> serve_file(path, request.config.static_root)
-    #(_, path) -> not_found(path)
+  case request.method, request.path {
+    Get, ["/"] -> ok_with(bit_builder.from_string("Hello, world!"))
+    Get, path -> serve_file(path, request.config.static_root)
+    _, _ -> not_found()
   }
 }
 
@@ -195,12 +201,7 @@ pub fn make_service(
 pub fn result_to_response(response: AppResult) -> Response(BitBuilder) {
   case response {
     Ok(resp) -> resp
-    Error(NotFound(path)) ->
-      [#("error", json.string(string.concat(["Not found: ", path])))]
-      |> json.object
-      |> json.to_string_builder
-      |> bit_builder.from_string_builder
-      |> Response(status: 404, headers: [], body: _)
+    Error(NotFound) -> empty_response(404)
   }
 }
 
